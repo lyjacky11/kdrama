@@ -8,31 +8,24 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 class Titles extends Component {
 
     render() {
-        const { titles, currentPage, totalPages, totalResults, getImage, nextPage } = this.props;
-
+        const { titles, queryTitles, currentPage, totalPages, totalResults, getImage, nextPage } = this.props;
+        const titlesToDisplay = queryTitles.length !== 0 ? queryTitles : titles;
+        
         return (
             <div>
                 {
-                    (titles.length !== 0) ? console.log(titles) : null
+                    (titlesToDisplay.length !== 0) ? console.log(titlesToDisplay) : null
                 }
                 <h5 className="p-3">Total Results: {totalResults}</h5>
                 {
-                    (titles.length !== 0) ?
+                    (titlesToDisplay.length !== 0) ?
                         <Scroller
                             loadMore={nextPage}
                             hasMore={currentPage < totalPages}
-                            loader=
-                            {
-                                <div key={0}>
-                                    <h6>Loading more titles...</h6>
-                                    <br />
-                                    <Spinner animation="border" />
-                                </div>
-                            }
                         >
                             <div className="titlesContainer">
                                 {
-                                    titles.map((title, index) => (
+                                    titlesToDisplay.map((title, index) => (
                                         <Link key={index} className="titleLink" to={`/title/${title.id}`}>
                                             <div key={index} className="titleInfo">
                                                 <div>
@@ -54,6 +47,11 @@ class Titles extends Component {
                                 }
                             </div>
                             <br />
+                            <div>
+                                <h6>Loading more titles...</h6>
+                                <br />
+                                <Spinner animation="border" />
+                            </div>
                         </Scroller>
                         : <div className="titlesContainer">
                             <div className="titleInfo">

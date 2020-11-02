@@ -22,6 +22,7 @@ class App extends Component {
 			air_date_year : "",
 			page          : 1,
 			search_query  : "",
+			query_titles  : [],
 			titles        : [],
 			total_pages   : 0,
 			total_results : 0
@@ -53,14 +54,14 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state
 			.display_lang}&sort_by=${newSortBy}&with_genres=${this.state.genres}&with_original_language=${this.state
-			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${1}`;
+			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-        });
-        this.handleSearch(this.state.search_query);
+		});
+		this.handleSearch(this.state.search_query, false);
 	};
 
 	changeLang = async (event) => {
@@ -71,14 +72,14 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state.display_lang}&sort_by=${this.state
 			.sort_by}&with_genres=${this.state.genres}&with_original_language=${newLang}&first_air_date_year=${this
-			.state.air_date_year}&page=${1}`;
+			.state.air_date_year}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-        });
-        this.handleSearch(this.state.search_query);
+		});
+		this.handleSearch(this.state.search_query, false);
 	};
 
 	changeYear = async (event) => {
@@ -89,27 +90,30 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state.display_lang}&sort_by=${this.state
 			.sort_by}&with_genres=${this.state.genres}&with_original_language=${this.state
-			.orig_lang}&first_air_date_year=${newYear}&page=${1}`;
+			.orig_lang}&first_air_date_year=${newYear}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-        });
-        this.handleSearch(this.state.search_query);
+		});
+		this.handleSearch(this.state.search_query, false);
 	};
 
-	handleSearch = (query) => {
-        if (query !== "") {
-            const titles = this.state.titles;
-            const queryTitles = titles.filter((title) => title.name.toLowerCase().includes(query.toLowerCase()));
-            this.setState({
-                search_query  : query,
-                titles        : queryTitles,
-                total_pages   : Math.ceil(queryTitles.length / 20),
-                total_results : queryTitles.length
+	handleSearch = (query, nextPage) => {
+		if (query !== "") {
+			if (!nextPage) {
+				this.setState({ page: 1 });
+			}
+			const titles = this.state.titles;
+			const queryTitles = titles.filter((title) => title.name.toLowerCase().includes(query.toLowerCase()));
+			this.setState({
+				search_query  : query,
+				query_titles   : queryTitles,
+				total_pages   : Math.ceil(queryTitles.length / 20),
+				total_results : queryTitles.length
             });
-        }
+		}
 	};
 
 	nextPage = () => {
@@ -124,8 +128,8 @@ class App extends Component {
 				titles        : updatedTitles,
 				total_pages   : apiResult.total_pages,
 				total_results : apiResult.total_results
-            });
-            this.handleSearch(this.state.search_query);
+			});
+			this.handleSearch(this.state.search_query, true);
 		}, 1250);
 	};
 
@@ -156,7 +160,8 @@ class App extends Component {
 							/>
 							{this.state.titles.length !== 0 ? (
 								<Titles
-									titles={this.state.titles}
+                                    titles={this.state.titles}
+                                    queryTitles={this.state.query_titles}
 									currentPage={this.state.page}
 									totalPages={this.state.total_pages}
 									totalResults={this.state.total_results}

@@ -60,7 +60,8 @@ class Filters extends Component {
                 </div>
                 <div className="search m-4">
                     <label className="mr-4" htmlFor="search_box">Search:</label>
-                    <input type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value)} placeholder="Search by title name..."></input>
+                    <input type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search by title name..." />
+                    <p>Click "Reset Filters" to clear the search bar!</p>
                 </div>
             </div>
         );
