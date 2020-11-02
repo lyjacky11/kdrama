@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
+import noImage from './No_image_poster.png';
 
 const imageWidth = "w500";
-const imageAPI = `https://image.tmdb.org/t/p/${imageWidth}/`;
+const imageAPI = `https://image.tmdb.org/t/p/${imageWidth}`;
 
 /*
 export const getImageConfig = async (apiUrl) => {
@@ -26,9 +27,19 @@ export const getTitles = async (apiUrl) => {
 	}
 };
 
+export const getTitleInfo = async (apiUrl) => {
+    console.log(apiUrl);
+    try {
+        const { data }  = await axios.get(apiUrl);
+        return data;
+    } catch (err) {
+        return err;
+    }
+}
+
 export const getImage = (poster_path) => {
 	if (poster_path !== null) {
 		return imageAPI + poster_path;
 	}
-	return "";
+	return noImage;
 };

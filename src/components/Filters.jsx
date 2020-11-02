@@ -42,7 +42,7 @@ class Filters extends Component {
                 </div>
                 <br />
                 <div className="yearFilter">
-                    <label className="mr-4" htmlFor="year"><h5>Year:</h5></label>
+                    <label className="mr-4" htmlFor="year"><h5>Filter By Year:</h5></label>
                     <input type="number" id="year" name="year" onChange={changeYear} placeholder="ex. 2020" step="1" min="1900" max="2100"></input>
                 </div>
             </div>
