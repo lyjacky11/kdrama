@@ -103,16 +103,17 @@ class App extends Component {
 			const apiResult = await getTitles(discoverAPI);
 			const updatedTitles = [].concat(this.state.titles, apiResult.results);
 			this.setState({
-                titles        : updatedTitles,
-                total_pages   : apiResult.total_pages,
-                total_results : apiResult.total_results
-            });
+				titles        : updatedTitles,
+				total_pages   : apiResult.total_pages,
+				total_results : apiResult.total_results
+			});
 		}, 1250);
 	};
 
 	fetchTitleInfo = async (titleId) => {
 		const titleAPI = `${titleAPIurl}/${titleId}?api_key=${apiKey}&language=${this.state.display_lang}`;
 		return await getTitleInfo(titleAPI);
+
 	};
 
 	render () {
@@ -133,8 +134,8 @@ class App extends Component {
 								<Titles
 									titles={this.state.titles}
 									currentPage={this.state.page}
-                                    totalPages={this.state.total_pages}
-                                    totalResults={this.state.total_results}
+									totalPages={this.state.total_pages}
+									totalResults={this.state.total_results}
 									getImage={getImage}
 									nextPage={this.nextPage}
 								/>
@@ -145,7 +146,6 @@ class App extends Component {
 							)}
 						</Route>
 						<Route
-							exact
 							path="/title/:id"
 							render={(props) => (
 								<TitleInfo
@@ -157,7 +157,7 @@ class App extends Component {
 						/>
 						<Route>
 							<div className="m-5">
-								<h5>The page you're trying to reach can't be found!</h5>
+								<h5>The page you're trying to reach is not found!</h5>
 								<h5>
 									<Link to="/">Back To Home</Link>
 								</h5>

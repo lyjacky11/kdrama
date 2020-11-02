@@ -29,7 +29,7 @@ class TitleInfo extends Component {
         const { titleInfo } = this.state;
 
         return (
-            titleInfo !== null ?
+            (titleInfo !== null && !titleInfo.response) ?
                 <div>
                     <h4>
                         <Link to="/">Back To Home</Link>
