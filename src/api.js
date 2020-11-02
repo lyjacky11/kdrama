@@ -22,6 +22,15 @@ export const getTitleInfo = async (apiUrl) => {
 	}
 };
 
+export const getNetworkInfo = async (apiUrl) => {
+    try {
+        const { data } = await axios.get(apiUrl);
+        return data;
+    } catch (err) {
+        return err;
+    }
+};
+
 export const getImage = (image_path, image_size) => {
 	if (image_path !== null) {
 		return `${imageAPI}/${image_size}/${image_path}`;

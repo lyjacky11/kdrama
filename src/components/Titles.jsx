@@ -57,7 +57,7 @@ class Titles extends Component {
                         </Scroller>
                         : <div className="titlesContainer">
                             <div className="titleInfo">
-                                <h3>No titles found!</h3>
+                                <h3>No titles found for this query!</h3>
                             </div>
                         </div>
                 }

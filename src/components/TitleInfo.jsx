@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 const tmdbUrl = "https://www.themoviedb.org/tv";
 
@@ -12,15 +11,21 @@ class TitleInfo extends Component {
         super(props);
 
         this.state = {
-            titleInfo: null
+            titleInfo: null,
+            networkInfo: null,
         };
         this.initialState = this.state;
     }
 
     async componentDidMount() {
-        const { titleId, fetchTitleInfo } = this.props;
+        const { titleId, fetchTitleInfo, fetchNetworkInfo } = this.props;
         const titleInfo = await fetchTitleInfo(titleId);
+        const networkInfo = [];
         this.setState({ titleInfo: titleInfo });
+        titleInfo.networks.map(async (network) => (
+            networkInfo.push(await fetchNetworkInfo(network.id))
+        ));
+        this.setState({ networkInfo: networkInfo });
         console.log(titleInfo);
     }
 
@@ -32,7 +37,7 @@ class TitleInfo extends Component {
             (titleInfo !== null && !titleInfo.response) ?
                 <div>
                     <h4>
-                        <Link to="/">Back To Home</Link>
+                        <Link to="/"><FontAwesomeIcon icon={faArrowAltCircleLeft}/>&nbsp; Back To Home</Link>
                     </h4>
                     <div className="titleData p-4 m-3">
                         <div className="titlePoster mb-4">
@@ -51,7 +56,7 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h5>{
                                     titleInfo.networks.map((network) => (
-                                        <img className="mr-4" key={network.id} alt={network.name} src={getImage(network.logo_path, "w92")}></img>                                        
+                                        <img className="mr-4" key={network.id} alt={network.name} src={getImage(network.logo_path, "w92")}></img>
                                     ))
                                 }
                                 </h5>
@@ -81,9 +86,12 @@ class TitleInfo extends Component {
                     </div>
                 </div>
                 : <div>
-                    <div>Loading title information...</div>
-                    <br />
-                    <Spinner animation="border" />
+                    <h4>
+                        <Link to="/"><FontAwesomeIcon icon={faArrowAltCircleLeft}/>&nbsp; Back To Home</Link>
+                    </h4>
+                    <div className="titleData p-4 m-3">
+                        <h5>Invalid Title ID!</h5>
+                    </div>
                 </div>
         );
     }

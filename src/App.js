@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
-import { getTitles, getImage, getTitleInfo } from "./api.js";
+import { getTitles, getImage, getTitleInfo, getNetworkInfo } from "./api.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -9,6 +9,7 @@ import "./App.css";
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 const discoverAPIurl = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&include_null_first_air_dates=false`;
 const titleAPIurl = `https://api.themoviedb.org/3/tv`;
+const networkAPIurl = `https://api.themoviedb.org/3/network`;
 
 class App extends Component {
 	constructor (props) {
@@ -20,6 +21,7 @@ class App extends Component {
 			genres        : "18",
 			air_date_year : "",
 			page          : 1,
+			search_query  : "",
 			titles        : [],
 			total_pages   : 0,
 			total_results : 0
@@ -51,13 +53,14 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state
 			.display_lang}&sort_by=${newSortBy}&with_genres=${this.state.genres}&with_original_language=${this.state
-			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${this.state.page}`;
+			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${1}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-		});
+        });
+        this.handleSearch(this.state.search_query);
 	};
 
 	changeLang = async (event) => {
@@ -68,13 +71,14 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state.display_lang}&sort_by=${this.state
 			.sort_by}&with_genres=${this.state.genres}&with_original_language=${newLang}&first_air_date_year=${this
-			.state.air_date_year}&page=${this.state.page}`;
+			.state.air_date_year}&page=${1}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-		});
+        });
+        this.handleSearch(this.state.search_query);
 	};
 
 	changeYear = async (event) => {
@@ -85,13 +89,27 @@ class App extends Component {
 		});
 		const discoverAPI = `${discoverAPIurl}&language=${this.state.display_lang}&sort_by=${this.state
 			.sort_by}&with_genres=${this.state.genres}&with_original_language=${this.state
-			.orig_lang}&first_air_date_year=${newYear}&page=${this.state.page}`;
+			.orig_lang}&first_air_date_year=${newYear}&page=${1}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
 			titles        : apiResult.results,
 			total_pages   : apiResult.total_pages,
 			total_results : apiResult.total_results
-		});
+        });
+        this.handleSearch(this.state.search_query);
+	};
+
+	handleSearch = (query) => {
+        if (query !== "") {
+            const titles = this.state.titles;
+            const queryTitles = titles.filter((title) => title.name.toLowerCase().includes(query.toLowerCase()));
+            this.setState({
+                search_query  : query,
+                titles        : queryTitles,
+                total_pages   : Math.ceil(queryTitles.length / 20),
+                total_results : queryTitles.length
+            });
+        }
 	};
 
 	nextPage = () => {
@@ -106,14 +124,19 @@ class App extends Component {
 				titles        : updatedTitles,
 				total_pages   : apiResult.total_pages,
 				total_results : apiResult.total_results
-			});
+            });
+            this.handleSearch(this.state.search_query);
 		}, 1250);
 	};
 
 	fetchTitleInfo = async (titleId) => {
 		const titleAPI = `${titleAPIurl}/${titleId}?api_key=${apiKey}&language=${this.state.display_lang}`;
 		return await getTitleInfo(titleAPI);
+	};
 
+	fetchNetworkInfo = async (networkId) => {
+		const networkAPI = `${networkAPIurl}/${networkId}?api_key=${apiKey}`;
+		return await getNetworkInfo(networkAPI);
 	};
 
 	render () {
@@ -129,6 +152,7 @@ class App extends Component {
 								changeSortBy={this.changeSortBy}
 								changeLang={this.changeLang}
 								changeYear={this.changeYear}
+								handleSearch={this.handleSearch}
 							/>
 							{this.state.titles.length !== 0 ? (
 								<Titles
@@ -146,22 +170,19 @@ class App extends Component {
 							)}
 						</Route>
 						<Route
+							exact
 							path="/title/:id"
 							render={(props) => (
 								<TitleInfo
 									titleId={props.match.params.id}
 									fetchTitleInfo={this.fetchTitleInfo}
+									fetchNetworkInfo={this.fetchNetworkInfo}
 									getImage={getImage}
 								/>
 							)}
 						/>
 						<Route>
-							<div className="m-5">
-								<h5>The page you're trying to reach is not found!</h5>
-								<h5>
-									<Link to="/">Back To Home</Link>
-								</h5>
-							</div>
+							<Redirect to="/" />
 						</Route>
 					</Switch>
 				</Router>
