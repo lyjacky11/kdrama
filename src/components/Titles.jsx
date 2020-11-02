@@ -4,19 +4,18 @@ import Spinner from 'react-bootstrap/Spinner';
 import Scroller from "react-infinite-scroller";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import "../App.css";
 
 class Titles extends Component {
 
     render() {
-        const { titles, currentPage, totalPages, getImage, nextPage } = this.props;
+        const { titles, currentPage, totalPages, totalResults, getImage, nextPage } = this.props;
 
         return (
             <div>
                 {
                     (titles.length !== 0) ? console.log(titles) : null
                 }
-                <h3 className="p-3">Titles</h3>
+                <h5 className="p-3">Total Results: {totalResults}</h5>
                 {
                     (titles.length !== 0) ?
                         <Scroller

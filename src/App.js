@@ -21,7 +21,8 @@ class App extends Component {
 			air_date_year : "",
 			page          : 1,
 			titles        : [],
-			total_pages   : 0
+			total_pages   : 0,
+			total_results : 0
 		};
 	}
 
@@ -31,15 +32,16 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${this.state.page}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles      : apiResult.results,
-			total_pages : apiResult.total_pages
-        });
-        this.initialState = this.state;
-    }
+			titles        : apiResult.results,
+			total_pages   : apiResult.total_pages,
+			total_results : apiResult.total_results
+		});
+		this.initialState = this.state;
+	}
 
-    resetState = () => {
-        this.setState(this.initialState);
-    }
+	resetState = () => {
+		this.setState(this.initialState);
+	};
 
 	changeSortBy = async (event) => {
 		const newSortBy = event.target.value;
@@ -52,8 +54,9 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${this.state.page}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles      : apiResult.results,
-			total_pages : apiResult.total_pages
+			titles        : apiResult.results,
+			total_pages   : apiResult.total_pages,
+			total_results : apiResult.total_results
 		});
 	};
 
@@ -68,8 +71,9 @@ class App extends Component {
 			.state.air_date_year}&page=${this.state.page}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles      : apiResult.results,
-			total_pages : apiResult.total_pages
+			titles        : apiResult.results,
+			total_pages   : apiResult.total_pages,
+			total_results : apiResult.total_results
 		});
 	};
 
@@ -84,8 +88,9 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${newYear}&page=${this.state.page}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles      : apiResult.results,
-			total_pages : apiResult.total_pages
+			titles        : apiResult.results,
+			total_pages   : apiResult.total_pages,
+			total_results : apiResult.total_results
 		});
 	};
 
@@ -98,9 +103,10 @@ class App extends Component {
 			const apiResult = await getTitles(discoverAPI);
 			const updatedTitles = [].concat(this.state.titles, apiResult.results);
 			this.setState({
-				titles      : updatedTitles,
-				total_pages : apiResult.total_pages
-			});
+                titles        : updatedTitles,
+                total_pages   : apiResult.total_pages,
+                total_results : apiResult.total_results
+            });
 		}, 1250);
 	};
 
@@ -117,8 +123,8 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/">
 							<Filters
-                                getState={this.state}
-                                resetState={this.resetState}
+								getState={this.state}
+								resetState={this.resetState}
 								changeSortBy={this.changeSortBy}
 								changeLang={this.changeLang}
 								changeYear={this.changeYear}
@@ -127,7 +133,8 @@ class App extends Component {
 								<Titles
 									titles={this.state.titles}
 									currentPage={this.state.page}
-									totalPages={this.state.total_pages}
+                                    totalPages={this.state.total_pages}
+                                    totalResults={this.state.total_results}
 									getImage={getImage}
 									nextPage={this.nextPage}
 								/>

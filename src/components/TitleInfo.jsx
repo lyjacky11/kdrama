@@ -59,22 +59,22 @@ class TitleInfo extends Component {
                                 </h5>
                             </div>
                             <div className="mt-4">
-                                <h5>Air Date: {titleInfo.first_air_date}</h5>
+                                <h6>Air Date: {titleInfo.first_air_date}</h6>
                             </div>
                             <div>
-                                <h5>
+                                <h6>Genres:&nbsp;
                                     {
                                         titleInfo.genres.map((genre) => (
                                             genre.name + " • "
                                         ))
                                     }
-                                </h5>
+                                </h6>
                             </div>
                             <div>
-                                <h5>Episodes: {titleInfo.number_of_episodes}</h5>
+                                <h6>Episodes: {titleInfo.number_of_episodes}</h6>
                             </div>
                             <div className="mt-4">
-                                <h6>Overview:</h6> <p>{titleInfo.overview}</p>
+                                <h6>Overview:</h6><p>{titleInfo.overview}</p>
                             </div>
                         </div>
                     </div>
