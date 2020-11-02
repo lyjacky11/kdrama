@@ -4,6 +4,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
+const tmdbUrl = "https://www.themoviedb.org/tv";
+
 class TitleInfo extends Component {
 
     constructor(props) {
@@ -33,21 +35,34 @@ class TitleInfo extends Component {
                         <Link to="/">Back To Home</Link>
                     </h4>
                     <div className="titleData m-3">
-                        <div className="titlePoster">
-                            <img alt={titleInfo.name} src={getImage(titleInfo.poster_path)}></img>
+                        <div className="titlePoster mb-4">
+                            <a href={`${tmdbUrl}/${titleInfo.id}`} target="_blank" rel="noreferrer">
+                                <img alt={titleInfo.name} src={getImage(titleInfo.poster_path, "w500")} />
+                            </a>
                         </div>
-                        <div className="titleContent mt-4">
+                        <div className="titleContent">
                             <div>
-                                <h4>Title: {titleInfo.name} ({titleInfo.original_name}) </h4>
+                                <h4>{titleInfo.name} <br /> ({titleInfo.original_name}) </h4>
                             </div>
-                            <div className="mt-5">
+                            <div className="mt-4">
                                 <h5>Rating: {titleInfo.vote_average}/10 <FontAwesomeIcon icon={faStar} color="orange" ></FontAwesomeIcon></h5>
+                                <h6>{titleInfo.vote_count} votes</h6>
                             </div>
-                            <div>
+                            <div className="mt-4">
+                                <h5>{
+                                    titleInfo.networks.map((network) => (
+                                        <div key={network.id}>
+                                            <img alt={network.name} src={getImage(network.logo_path, "w92")}></img>
+                                        </div>
+                                    ))
+                                }
+                                </h5>
+                            </div>
+                            <div className="mt-4">
                                 <h5>Air Date: {titleInfo.first_air_date}</h5>
                             </div>
                             <div>
-                                <h5>Genres:&nbsp;
+                                <h5>
                                     {
                                         titleInfo.genres.map((genre) => (
                                             genre.name + " • "
@@ -58,13 +73,13 @@ class TitleInfo extends Component {
                             <div>
                                 <h5>Episodes: {titleInfo.number_of_episodes}</h5>
                             </div>
-                            <div className="mt-5">
-                                <b>Overview:</b> <br /> <p>{titleInfo.overview}</p>
+                            <div className="mt-4">
+                                <h6>Overview:</h6> <p>{titleInfo.overview}</p>
                             </div>
                         </div>
                     </div>
                     <div className="backdropImage m-5">
-                        <img alt={titleInfo.name} src={getImage(titleInfo.backdrop_path)}></img>
+                        <img alt={titleInfo.name} src={getImage(titleInfo.backdrop_path, "w780")}></img>
                     </div>
                 </div>
                 : <div>

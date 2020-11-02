@@ -1,8 +1,14 @@
-.titlesContainer {
+button {
+    border: none;
+    padding: 8px;
+
+}
+
+.titlesContainer, .filters {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-evenly;
     align-items: center;
 }
 
@@ -23,7 +29,6 @@
     display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-    align-items: center;
     background-color: rgb(244, 254, 255);
     border-radius: 5%;
 }
@@ -35,7 +40,7 @@
 }
 
 .titlePoster {
-    width: 225px;
+    width: 250px;
 }
 
 .titlePoster img {
@@ -43,10 +48,18 @@
 }
 
 @media screen and (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+    
     .titleInfo {
         width: 150px;
         padding: 10px;
         font-size: 0.85rem;
+    }
+
+    .titlePoster {
+        width: 175px;
     }
 
     .titleContent {

@@ -4,7 +4,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import Scroller from "react-infinite-scroller";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-
 import "../App.css";
 
 class Titles extends Component {
@@ -13,12 +12,11 @@ class Titles extends Component {
         const { titles, currentPage, totalPages, getImage, nextPage } = this.props;
 
         return (
-            <div className="m-3">
-
+            <div>
                 {
                     (titles.length !== 0) ? console.log(titles) : null
                 }
-
+                <h3 className="p-3">Titles</h3>
                 {
                     (titles.length !== 0) ?
                         <Scroller
@@ -27,7 +25,7 @@ class Titles extends Component {
                             loader=
                             {
                                 <div key={0}>
-                                    <div>Loading more titles...</div>
+                                    <h6>Loading more titles...</h6>
                                     <br />
                                     <Spinner animation="border" />
                                 </div>
@@ -39,7 +37,7 @@ class Titles extends Component {
                                         <Link key={index} className="titleLink" to={`/title/${title.id}`}>
                                             <div key={index} className="titleInfo">
                                                 <div>
-                                                    <b>{title.name} <br /> {title.original_name}</b>
+                                                    <b>{title.name} <br /> ({title.original_name})</b>
                                                 </div>
                                                 <br />
                                                 <div>
@@ -48,7 +46,7 @@ class Titles extends Component {
                                                 </div>
                                                 <br />
                                                 <div>
-                                                    <img alt={title.name} src={getImage(title.poster_path)}></img>
+                                                    <img alt={title.name} src={getImage(title.poster_path, "w500")}></img>
                                                 </div>
                                                 <br />
                                             </div>
