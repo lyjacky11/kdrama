@@ -34,7 +34,7 @@ class TitleInfo extends Component {
                     <h4>
                         <Link to="/">Back To Home</Link>
                     </h4>
-                    <div className="titleData m-3">
+                    <div className="titleData p-4 m-3">
                         <div className="titlePoster mb-4">
                             <a href={`${tmdbUrl}/${titleInfo.id}`} target="_blank" rel="noreferrer">
                                 <img alt={titleInfo.name} src={getImage(titleInfo.poster_path, "w500")} />
