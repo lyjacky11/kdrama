@@ -42,7 +42,7 @@ class TitleInfo extends Component {
                         </div>
                         <div className="titleContent">
                             <div>
-                                <h4>{titleInfo.name} <br /> ({titleInfo.original_name}) </h4>
+                                <h4>{titleInfo.name} <br /> {titleInfo.original_name !== titleInfo.name ? titleInfo.original_name : ""}</h4>
                             </div>
                             <div className="mt-4">
                                 <h5>Rating: {titleInfo.vote_average}/10 <FontAwesomeIcon icon={faStar} color="orange" ></FontAwesomeIcon></h5>
@@ -51,9 +51,7 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h5>{
                                     titleInfo.networks.map((network) => (
-                                        <div key={network.id}>
-                                            <img alt={network.name} src={getImage(network.logo_path, "w92")}></img>
-                                        </div>
+                                        <img className="mr-4" key={network.id} alt={network.name} src={getImage(network.logo_path, "w92")}></img>                                        
                                     ))
                                 }
                                 </h5>

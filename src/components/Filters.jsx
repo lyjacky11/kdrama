@@ -46,6 +46,7 @@ class Filters extends Component {
                         <option value="ja">Japanese (日本語)</option>
                         <option value="zh">Mandarin (普通话)</option>
                         <option value="cn">Cantonese (廣州話)</option>
+                        <option value="">All Languages</option>
                     </select>
                 </div>
                 <div className="yearFilter mb-2">

@@ -36,7 +36,7 @@ class Titles extends Component {
                                         <Link key={index} className="titleLink" to={`/title/${title.id}`}>
                                             <div key={index} className="titleInfo">
                                                 <div>
-                                                    <b>{title.name} <br /> ({title.original_name})</b>
+                                                    <b>{title.name} <br /> {title.original_name !== title.name ? title.original_name : ""}</b>
                                                 </div>
                                                 <br />
                                                 <div>
