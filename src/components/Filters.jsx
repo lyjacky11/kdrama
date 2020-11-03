@@ -53,11 +53,11 @@ class Filters extends Component {
                         </select>
                     </div>
                     <div className="yearFilter form-group">
-                        <label className="mr-4" htmlFor="year">Filter Year:</label>
+                        <label className="mr-4" htmlFor="year">Filter By Year:</label>
                         <input className="form-control" type="number" id="year" name="year" value={getState.air_date_year} onChange={changeYear} placeholder="YYYY" step="1" min="1980" max="2100"></input>
                     </div>
                     <div className="langFilter form-group">
-                        <label className="mr-4" htmlFor="orig_lang">Language:</label>
+                        <label className="mr-4" htmlFor="orig_lang">Filter By Language:</label>
                         <select className="form-control" name="orig_lang" id="orig_lang" value={getState.orig_lang} onChange={changeLang}>
                             <option value="ko">Korean (한국어)</option>
                             <option value="ja">Japanese (日本語)</option>
@@ -71,11 +71,11 @@ class Filters extends Component {
                 </div>
                 <div className="search m-3">
                     <div className="searchById form-group">
-                        <label className="mr-4" htmlFor="title_by_id">Search by TMDB ID:</label>
-                        <input className="form-control" type="number" id="title_by_id" name="title_by_id" onKeyDown={this.setTitleById} placeholder="Enter TMDB TV ID..." step="1" min="1" max="99999" />
+                        <label className="mr-4" htmlFor="title_by_id">Search by TMDB TV ID:</label>
+                        <input className="form-control" type="number" id="title_by_id" name="title_by_id" onKeyDown={this.setTitleById} placeholder="Use Enter to search..." step="1" min="1" max="99999" />
                     </div>
                     <div className="searchByTitle form-group">
-                        <label className="mr-4" htmlFor="search_box">Search by Title:</label>
+                        <label className="mr-4" htmlFor="search_box">Search by Original or English Title:</label>
                         <input className="form-control" type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search for a drama or series..." />
                     </div>
                     <div className="resetState">
