@@ -111,7 +111,7 @@ label {
 	TITLE INFO COMPONENT
 */
 .TitleInfoComponent {
-	min-height: calc(100vh - 360px);
+	min-height: calc(100vh - 250px);
 }
 
 .titleData,
