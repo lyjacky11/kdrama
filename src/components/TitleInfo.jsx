@@ -3,23 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const tmdbUrl = "https://www.themoviedb.org/tv";
+const numOtherTitles = 6;
 
 class TitleInfo extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            titleInfo: null
+            titleInfo: null,
+            otherTitles: null
         };
-        this.initialState = this.state;
     }
 
     async componentDidMount() {
-        const { titleId, fetchTitleInfo } = this.props;
+        const { titleId, fetchTitleInfo, fetchOtherTitles } = this.props;
         const titleInfo = await fetchTitleInfo(titleId);
+        const otherTitles = await fetchOtherTitles(titleId);
         document.title = `${titleInfo.name} ${(titleInfo.original_name !== titleInfo.name) ? "(" + titleInfo.original_name + ")" : ""} | Discover Asian Dramas`;
-        this.setState({ titleInfo: titleInfo });
+        this.setState({
+            titleInfo: titleInfo,
+            otherTitles: otherTitles
+        });
         console.log(titleInfo);
+        console.log(otherTitles);
     }
 
     render() {
@@ -30,7 +36,7 @@ class TitleInfo extends Component {
             (titleInfo !== null && !titleInfo.response) ?
                 <div className="TitleInfoComponent">
                     <div className="backdrop" style={{ backgroundImage: `url(${getBackdrop(titleInfo.backdrop_path, "w780")}` }}></div>
-                    <div className="titleData" >
+                    <div className="titleData">
                         <div className="titlePoster mb-4">
                             <a href={`${tmdbUrl}/${titleInfo.id}`} target="_blank" rel="noreferrer">
                                 <img alt={titleInfo.name} src={getPoster(titleInfo.poster_path, "w500")} />
@@ -73,7 +79,22 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h6>Overview:</h6><p>{titleInfo.overview}</p>
                             </div>
+                            <div>
+                                <h4 className="otherTitlesHeading">Recommendations:</h4>
+                            </div>
                         </div>
+                    </div>
+                    <div className="otherTitles">
+                        {
+                            this.state.otherTitles.slice(0,numOtherTitles).map((otherTitle, index) => (
+                                <div key={index} className="otherTitlePoster mb-4">
+                                    <a href={`/title/${otherTitle.id}`}>
+                                        <img alt={otherTitle.name} src={getPoster(otherTitle.poster_path, "w500")} />
+                                    </a>
+                                    <p className="mt-3"><b>{otherTitle.name} <br /> {(otherTitle.original_name !== otherTitle.name) ? otherTitle.original_name : ""}</b></p>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
                 : <div>

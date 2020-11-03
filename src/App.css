@@ -114,9 +114,10 @@ label {
 	min-height: calc(100vh - 360px);
 }
 
-.titleData {
+.titleData,
+.otherTitles {
 	position: relative;
-	margin: 100px;
+	margin-top: 35px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -124,17 +125,28 @@ label {
 	z-index: 11;
 }
 
+.otherTitlesHeading {
+	margin-top: 40px;
+}
+
 .titlePoster {
 	width: 250px;
 }
 
-.titlePoster img {
+.otherTitlePoster {
+	width: 150px;
+	margin: 0 20px;
+}
+
+.titlePoster img,
+.otherTitlePoster img {
 	width: 100%;
 	border-radius: 20px;
 	transition: transform 250ms ease-in-out;
 }
 
-.titlePoster img:hover {
+.titlePoster img:hover,
+.otherTitlePoster img:hover {
 	transform: scale(1.04);
 }
 
@@ -209,6 +221,11 @@ label {
 
 	.titlePoster {
 		width: 175px;
+	}
+
+	.otherTitlePoster {
+		width: 140px;
+		margin: 0 15px;
 	}
 
 	.titleContent {

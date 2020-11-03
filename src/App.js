@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-d
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
-import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop, getNetwork } from "./api.js";
+import { getTitles, getTitleInfo, getOtherTitles, getPoster, getBackdrop, getNetwork } from "./api.js";
 import ScrollMemory from "react-router-scroll-memory";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,7 +12,6 @@ import "./App.css";
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 const discoverAPIurl = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&include_null_first_air_dates=false`;
 const titleAPIurl = `https://api.themoviedb.org/3/tv`;
-const networkAPIurl = `https://api.themoviedb.org/3/network`;
 
 class App extends Component {
 	constructor (props) {
@@ -187,10 +186,10 @@ class App extends Component {
 		return await getTitleInfo(titleAPI);
 	};
 
-	fetchNetworkInfo = async (networkId) => {
-		const networkAPI = `${networkAPIurl}/${networkId}?api_key=${apiKey}`;
-		return await getNetworkInfo(networkAPI);
-	};
+	fetchOtherTitles = async (titleId) => {
+		const recommendedTitleAPI = `${titleAPIurl}/${titleId}/recommendations?api_key=${apiKey}&language=${this.state.display_lang}&page=1`;
+		return await getOtherTitles(recommendedTitleAPI);
+	}
 
 	render () {
 		return (
@@ -227,6 +226,7 @@ class App extends Component {
 								<TitleInfo
 									titleId={props.match.params.id}
 									fetchTitleInfo={this.fetchTitleInfo}
+									fetchOtherTitles={this.fetchOtherTitles}
 									getPoster={getPoster}
 									getBackdrop={getBackdrop}
 									getNetwork={getNetwork}

@@ -23,10 +23,11 @@ export const getTitleInfo = async (apiUrl) => {
 	}
 };
 
-export const getNetworkInfo = async (apiUrl) => {
+export const getOtherTitles = async (apiUrl) => {
+	// console.log(apiUrl);
 	try {
-		const { data } = await axios.get(apiUrl);
-		return data;
+		const { data: { results } } = await axios.get(apiUrl);
+		return results;
 	} catch (err) {
 		return err;
 	}
