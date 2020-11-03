@@ -54,7 +54,7 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h5>{
                                     titleInfo.networks.map((network) => (
-                                        <img className="mr-4" key={network.id} alt={network.name} src={getNetwork(network.logo_path, "w92")}></img>
+                                        <a key={network.id} href={(titleInfo.homepage !== "") ? titleInfo.homepage : "#"} target={(titleInfo.homepage !== "") ? "_blank" : ""} rel="noreferrer"><img className="mr-4" alt={network.name} src={getNetwork(network.logo_path, "w92")}></img></a>
                                     ))
                                 }
                                 </h5>
