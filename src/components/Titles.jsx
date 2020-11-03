@@ -8,20 +8,32 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 class Titles extends Component {
 
     render() {
-        const { titles, queryTitles, currentPage, totalPages, totalResults, getImage, nextPage } = this.props;
-        const titlesToDisplay = queryTitles.length !== 0 ? queryTitles : titles;
-        
+        const { titles, queryTitles, searchQuery, currentPage, totalPages, totalResults, queryTotalResults, getImage, nextPage } = this.props;
+        const titlesToDisplay = searchQuery !== "" ? queryTitles : titles;
+
         return (
             <div>
                 {
                     (titlesToDisplay.length !== 0) ? console.log(titlesToDisplay) : null
                 }
-                <h5 className="p-3">Total Results: {totalResults}</h5>
+                <div className="resultsNum p-3">
+                    {
+                        (searchQuery === "") ? <b>Displaying: {queryTotalResults} of {totalResults} results</b>
+                            : <b>Displaying: {queryTotalResults} results</b>
+                    }
+                </div>
                 {
                     (titlesToDisplay.length !== 0) ?
                         <Scroller
                             loadMore={nextPage}
                             hasMore={currentPage < totalPages}
+                            loader={
+                                <div key={0}>
+                                    <h6>Loading more titles...</h6>
+                                    <br />
+                                    <Spinner animation="border" />
+                                </div>
+                            }
                         >
                             <div className="titlesContainer">
                                 {
@@ -47,16 +59,10 @@ class Titles extends Component {
                                 }
                             </div>
                             <br />
-                            <div>
-                                <h6>Loading more titles...</h6>
-                                <br />
-                                <Spinner animation="border" />
-                            </div>
                         </Scroller>
-                        : <div className="titlesContainer">
-                            <div className="titleInfo">
-                                <h3>No titles found for this query!</h3>
-                            </div>
+                        :
+                        <div className="m-5">
+                            <h5>No titles found for this query!</h5>
                         </div>
                 }
                 <br />

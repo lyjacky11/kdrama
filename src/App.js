@@ -15,17 +15,18 @@ class App extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			display_lang  : "en-US",
-			orig_lang     : "ko",
-			sort_by       : "popularity.desc",
-			genres        : "18",
-			air_date_year : "",
-			page          : 1,
-			search_query  : "",
-			query_titles  : [],
-			titles        : [],
-			total_pages   : 0,
-			total_results : 0
+			display_lang        : "en-US",
+			orig_lang           : "ko",
+			sort_by             : "popularity.desc",
+			genres              : "18",
+			air_date_year       : "",
+			page                : 1,
+			search_query        : "",
+			query_titles        : [],
+			titles              : [],
+			total_pages         : 0,
+			total_results       : 0,
+			query_total_results : 0
 		};
 	}
 
@@ -35,9 +36,10 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${this.state.page}`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles        : apiResult.results,
-			total_pages   : apiResult.total_pages,
-			total_results : apiResult.total_results
+			titles              : apiResult.results,
+			total_pages         : apiResult.total_pages,
+			total_results       : apiResult.total_results,
+			query_total_results : apiResult.results.length
 		});
 		this.initialState = this.state;
 	}
@@ -57,9 +59,10 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles        : apiResult.results,
-			total_pages   : apiResult.total_pages,
-			total_results : apiResult.total_results
+			titles              : apiResult.results,
+			total_pages         : apiResult.total_pages,
+			total_results       : apiResult.total_results,
+			query_total_results : apiResult.results.length
 		});
 		this.handleSearch(this.state.search_query, false);
 	};
@@ -75,9 +78,10 @@ class App extends Component {
 			.state.air_date_year}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles        : apiResult.results,
-			total_pages   : apiResult.total_pages,
-			total_results : apiResult.total_results
+			titles              : apiResult.results,
+			total_pages         : apiResult.total_pages,
+			total_results       : apiResult.total_results,
+			query_total_results : apiResult.results.length
 		});
 		this.handleSearch(this.state.search_query, false);
 	};
@@ -93,26 +97,36 @@ class App extends Component {
 			.orig_lang}&first_air_date_year=${newYear}&page=1`;
 		const apiResult = await getTitles(discoverAPI);
 		this.setState({
-			titles        : apiResult.results,
-			total_pages   : apiResult.total_pages,
-			total_results : apiResult.total_results
+			titles              : apiResult.results,
+			total_pages         : apiResult.total_pages,
+			total_results       : apiResult.total_results,
+			query_total_results : apiResult.results.length
 		});
 		this.handleSearch(this.state.search_query, false);
 	};
 
 	handleSearch = (query, nextPage) => {
+		const titles = this.state.titles;
 		if (query !== "") {
 			if (!nextPage) {
 				this.setState({ page: 1 });
 			}
-			const titles = this.state.titles;
-			const queryTitles = titles.filter((title) => title.name.toLowerCase().includes(query.toLowerCase()));
+			const queryTitles = titles.filter(
+				(title) =>
+					title.name.toLowerCase().includes(query.toLowerCase()) ||
+					title.original_name.toLowerCase().includes(query.toLowerCase())
+			);
 			this.setState({
-				search_query  : query,
-				query_titles   : queryTitles,
-				total_pages   : Math.ceil(queryTitles.length / 20),
-				total_results : queryTitles.length
-            });
+				search_query        : query,
+				query_titles        : queryTitles,
+				query_total_results : queryTitles.length
+			});
+		} else {
+			this.setState({
+				search_query        : "",
+				query_titles        : [],
+				query_total_results : titles.length
+			});
 		}
 	};
 
@@ -125,12 +139,13 @@ class App extends Component {
 			const apiResult = await getTitles(discoverAPI);
 			const updatedTitles = [].concat(this.state.titles, apiResult.results);
 			this.setState({
-				titles        : updatedTitles,
-				total_pages   : apiResult.total_pages,
-				total_results : apiResult.total_results
+				titles              : updatedTitles,
+				total_pages         : apiResult.total_pages,
+				total_results       : apiResult.total_results,
+				query_total_results : updatedTitles.length
 			});
 			this.handleSearch(this.state.search_query, true);
-		}, 1250);
+		}, 500);
 	};
 
 	fetchTitleInfo = async (titleId) => {
@@ -146,8 +161,8 @@ class App extends Component {
 	render () {
 		return (
 			<div className="text-center">
-				<Header />
 				<Router>
+					<Header />
 					<Switch>
 						<Route exact path="/">
 							<Filters
@@ -160,11 +175,13 @@ class App extends Component {
 							/>
 							{this.state.titles.length !== 0 ? (
 								<Titles
-                                    titles={this.state.titles}
-                                    queryTitles={this.state.query_titles}
+									titles={this.state.titles}
+									queryTitles={this.state.query_titles}
+									searchQuery={this.state.search_query}
 									currentPage={this.state.page}
 									totalPages={this.state.total_pages}
 									totalResults={this.state.total_results}
+									queryTotalResults={this.state.query_total_results}
 									getImage={getImage}
 									nextPage={this.nextPage}
 								/>
@@ -181,7 +198,6 @@ class App extends Component {
 								<TitleInfo
 									titleId={props.match.params.id}
 									fetchTitleInfo={this.fetchTitleInfo}
-									fetchNetworkInfo={this.fetchNetworkInfo}
 									getImage={getImage}
 								/>
 							)}
@@ -190,8 +206,8 @@ class App extends Component {
 							<Redirect to="/" />
 						</Route>
 					</Switch>
+					<Footer />
 				</Router>
-				<Footer />
 			</div>
 		);
 	}

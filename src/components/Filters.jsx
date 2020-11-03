@@ -6,7 +6,7 @@ class Filters extends Component {
 
         return (
             <div>
-                <div className="filters">
+                <div className="filters mt-4">
                     <div className="sortFilter mb-2">
                         <label className="mr-4" htmlFor="sort_by">Sort By:</label>
                         <select name="sort_by" id="sort_by" value={getState.sort_by} onChange={changeSortBy}>
@@ -47,7 +47,7 @@ class Filters extends Component {
                             <option value="ja">Japanese (日本語)</option>
                             <option value="zh">Mandarin (普通话)</option>
                             <option value="cn">Cantonese (廣州話)</option>
-                            <option value="">All Languages</option>
+                            <option value="ko,ja,zh,cn">All Languages</option>
                         </select>
                     </div>
                     <div className="yearFilter mb-2">
@@ -60,8 +60,10 @@ class Filters extends Component {
                 </div>
                 <div className="search m-4">
                     <label className="mr-4" htmlFor="search_box">Search:</label>
-                    <input type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search by title name..." />
-                    <p>Click "Reset Filters" to clear the search bar!</p>
+                    <input type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search for a drama title..." />
+                    {/* <label className="ml-5 mr-4" htmlFor="title_by_id">TMDB ID:</label>
+                    <input type="number" id="title_by_id" name="title_by_id" placeholder="Search by TMDB ID..." />
+                    <button onClick={getTitleById}>Go</button> */}
                 </div>
             </div>
         );

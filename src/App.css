@@ -1,73 +1,134 @@
 button {
-    border: none;
-    padding: 7px;
+	border: none;
+	color: white;
+	background-color: dodgerblue;
+	border-radius: 20px;
+	padding: 10px;
 }
 
-.titlesContainer, .filters {
+.header {
+	position: relative;
+	background-color: white;
+	z-index: 11;
+}
+
+.titlesContainer,
+.filters {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-evenly;
-    align-items: center;
+	align-items: center;
+}
+
+.search input {
+	width: 300px;
 }
 
 .titleInfo {
-    margin: 10px;
-    width: 225px;
+	margin: 10px;
+	width: fit-content;
 	padding: 10px 20px;
 	background-color: rgb(244, 254, 255);
 	border-radius: 8%;
 }
 
 .titleInfo img {
-    width: 100%;
+	width: 200px;
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	filter: brightness(25%);
+	z-index: 10;
+}
+
+.backLink {
+	position: relative;
+	top: 10px;
+	z-index: 11;
+}
+
+.titleInfoComponent {
+	min-height: calc(100vh - 115px - 110px);
 }
 
 .titleData {
-    padding: 20px;
-    display: flex;
+	position: relative;
+	margin: 100px;
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-    background-color: rgb(244, 254, 255);
-    border-radius: 5%;
+	color: white;
+	z-index: 11;
 }
 
 .titleContent {
-    margin-left: 40px;
-    text-align: left;
-    width: 50%;
+	margin-left: 40px;
+	text-align: left;
+	width: 50%;
 }
 
 .titlePoster {
-    width: 250px;
+	width: 250px;
 }
 
 .titlePoster img {
-    width: 100%;
+	width: 100%;
+}
+
+.resultsNum {
+	position: sticky;
+	top: 25px;
+	width: fit-content;
+	display: inline-block;
+	color: white;
+	background-color: dodgerblue;
+	border-radius: 20px;
+}
+
+.footer {
+	position: relative;
+	padding: 10px;
+	background-color: white;
+	z-index: 11;
 }
 
 @media screen and (max-width: 768px) {
-    .filters {
-        flex-direction: column;
-    }
-    
-    .titleInfo {
-        width: 150px;
-        padding: 10px;
-        font-size: 0.85rem;
-    }
+	.filters {
+		flex-direction: column;
+	}
 
-    .titlePoster {
-        width: 175px;
-    }
+	.search input {
+		width: 70%;
+	}
 
-    .titleContent {
-        margin-left: unset;
-        margin: 10px;
-        width: unset;
-    }
+	.titleInfo {
+		width: 150px;
+		padding: 10px;
+		font-size: 0.85rem;
+	}
 
-    .backdropImage img {
-        width: 95%;
-    }
+	.titleInfo img {
+		width: 130px;
+	}
+
+	.titleData {
+		margin: 50px;
+	}
+
+	.titlePoster {
+		width: 175px;
+	}
+
+	.titleContent {
+		margin-left: unset;
+		width: unset;
+	}
 }
