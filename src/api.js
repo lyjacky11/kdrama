@@ -1,5 +1,6 @@
 import axios from "axios";
-import noImage from "./No_image_poster.png";
+import noPoster from "./No_image_poster.png";
+import noBackdrop from "./Night_wallpaper.png";
 const imageAPI = `https://image.tmdb.org/t/p`;
 
 export const getTitles = async (apiUrl) => {
@@ -31,9 +32,16 @@ export const getNetworkInfo = async (apiUrl) => {
 	}
 };
 
-export const getImage = (image_path, image_size) => {
+export const getPoster = (image_path, image_size) => {
 	if (image_path !== null) {
 		return `${imageAPI}/${image_size}/${image_path}`;
 	}
-	return noImage;
+	return noPoster;
+};
+
+export const getBackdrop = (image_path, image_size) => {
+	if (image_path !== null) {
+		return `${imageAPI}/${image_size}/${image_path}`;
+	}
+	return noBackdrop;
 };

@@ -6,10 +6,19 @@ button {
 	padding: 10px;
 }
 
+label {
+	font-weight: 600;
+}
+
 .HeaderComponent {
+	padding: 20px;
 	position: relative;
 	background-color: white;
 	z-index: 11;
+}
+
+.homeLink {
+	padding-top: 5px;
 }
 
 .titlesContainer,
@@ -54,12 +63,6 @@ button {
 	z-index: 10;
 }
 
-.backLink {
-	position: relative;
-	top: 10px;
-	z-index: 11;
-}
-
 .TitleInfoComponent {
 	min-height: calc(100vh - 115px - 110px);
 }
@@ -91,6 +94,7 @@ button {
 .resultsNum {
 	position: sticky;
 	top: 25px;
+	padding: 15px;
 	width: fit-content;
 	display: inline-block;
 	color: white;

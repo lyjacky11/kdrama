@@ -23,17 +23,17 @@ class TitleInfo extends Component {
     }
 
     render() {
-        const { getImage } = this.props;
+        const { getPoster, getBackdrop } = this.props;
         const { titleInfo } = this.state;
 
         return (
             (titleInfo !== null && !titleInfo.response) ?
                 <div className="TitleInfoComponent">
-                    <div className="backdrop" style={{ backgroundImage: `url(${getImage(titleInfo.backdrop_path, "w780")}` }}></div>
+                    <div className="backdrop" style={{ backgroundImage: `url(${getBackdrop(titleInfo.backdrop_path, "w780")}` }}></div>
                     <div className="titleData" >
                         <div className="titlePoster mb-4">
                             <a href={`${tmdbUrl}/${titleInfo.id}`} target="_blank" rel="noreferrer">
-                                <img alt={titleInfo.name} src={getImage(titleInfo.poster_path, "w500")} />
+                                <img alt={titleInfo.name} src={getPoster(titleInfo.poster_path, "w500")} />
                             </a>
                         </div>
                         <div className="titleContent">
@@ -47,7 +47,7 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h5>{
                                     titleInfo.networks.map((network) => (
-                                        <img className="mr-4" key={network.id} alt={network.name} src={getImage(network.logo_path, "w92")}></img>
+                                        <img className="mr-4" key={network.id} alt={network.name} src={getPoster(network.logo_path, "w92")}></img>
                                     ))
                                 }
                                 </h5>

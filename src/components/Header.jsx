@@ -6,9 +6,9 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 class Header extends Component {
     render() {
         return (
-            <div className="HeaderComponent p-4">
+            <div className="HeaderComponent">
                 <h3>Discover Asian Dramas</h3>
-                <h4 className="backLink">
+                <h4 className="homeLink">
                     <Link to="/"><FontAwesomeIcon icon={faHome} />&nbsp; Home</Link>
                 </h4>
             </div>

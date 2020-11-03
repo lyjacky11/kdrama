@@ -12,7 +12,7 @@ class Titles extends Component {
     }
 
     render() {
-        const { titles, queryTitles, searchQuery, currentPage, totalPages, totalResults, queryTotalResults, getImage, nextPage } = this.props;
+        const { titles, queryTitles, searchQuery, currentPage, totalPages, totalResults, queryTotalResults, getPoster, nextPage } = this.props;
         const titlesToDisplay = searchQuery !== "" ? queryTitles : titles;
 
         return (
@@ -20,7 +20,7 @@ class Titles extends Component {
                 {
                     (titlesToDisplay.length !== 0) ? console.log(titlesToDisplay) : null
                 }
-                <div className="resultsNum m-3 p-3">
+                <div className="resultsNum">
                     {
                         (searchQuery === "") ? <b>Displaying: {queryTotalResults} of {totalResults} results</b>
                             : <b>Displaying: {queryTotalResults} results</b>
@@ -45,19 +45,18 @@ class Titles extends Component {
                                     titlesToDisplay.map((title, index) => (
                                         <Link key={index} className="titleLink" to={`/title/${title.id}`} >
                                             <div key={index} className="titleInfo">
-                                                <div>
-                                                    <b>{title.name} <br /> {title.original_name !== title.name ? title.original_name : ""}</b>
+                                                <div className="titleName">
+                                                    <p><b>{title.name} <br /> {title.original_name !== title.name ? title.original_name : ""}</b></p>
                                                 </div>
-                                                <br />
-                                                <div>
-                                                    Rating: {title.vote_average}/10 <FontAwesomeIcon icon={faStar} color="orange" ></FontAwesomeIcon>
-                                                    <br /> Air Date: {title.first_air_date}
+                                                <div className="titleRating">
+                                                    <p>
+                                                        Rating: {title.vote_average}/10 <FontAwesomeIcon icon={faStar} color="orange" ></FontAwesomeIcon>
+                                                        <br /> Air Date: {title.first_air_date}
+                                                    </p>
                                                 </div>
-                                                <br />
-                                                <div>
-                                                    <img alt={title.name} src={getImage(title.poster_path, "w500")}></img>
+                                                <div className="titleThumbnail">
+                                                    <p><img alt={title.name} src={getPoster(title.poster_path, "w500")}></img></p>
                                                 </div>
-                                                <br />
                                             </div>
                                         </Link>
                                     ))

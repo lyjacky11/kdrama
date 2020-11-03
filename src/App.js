@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
-import { getTitles, getImage, getTitleInfo, getNetworkInfo } from "./api.js";
+import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop } from "./api.js";
 import ScrollMemory from 'react-router-scroll-memory';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -161,7 +161,7 @@ class App extends Component {
 
 	render () {
 		return (
-			<div className="AppComponent text-center">
+			<div className="AppComponent">
 				<Router>
 					<ScrollMemory />
 					<Header />
@@ -183,7 +183,7 @@ class App extends Component {
 								totalPages={this.state.total_pages}
 								totalResults={this.state.total_results}
 								queryTotalResults={this.state.query_total_results}
-								getImage={getImage}
+								getPoster={getPoster}
 								nextPage={this.nextPage}
 							/>
 						</Route>
@@ -194,7 +194,8 @@ class App extends Component {
 								<TitleInfo
 									titleId={props.match.params.id}
 									fetchTitleInfo={this.fetchTitleInfo}
-									getImage={getImage}
+									getPoster={getPoster}
+									getBackdrop={getBackdrop}
 								/>
 							)}
 						/>
