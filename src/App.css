@@ -107,16 +107,6 @@ label {
 	z-index: 11;
 }
 
-.backToTop {
-	position: fixed;
-	bottom: 25px;
-	right: 25px;
-	z-index: 12;
-	cursor: pointer;
-	background-color: var(--bg-color);
-	border-radius: 50%;
-}
-
 /*
 	TITLE INFO COMPONENT
 */
@@ -169,6 +159,16 @@ label {
 /*
 	FOOTER COMPONENT
 */
+.backToTop {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	z-index: 12;
+	cursor: pointer;
+	background-color: var(--bg-color);
+	border-radius: 50%;
+}
+
 .FooterComponent {
 	position: relative;
 	padding: 15px;

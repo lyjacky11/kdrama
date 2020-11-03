@@ -197,9 +197,6 @@ class App extends Component {
 			<div className="AppComponent">
 				<Router>
 					<ScrollMemory />
-					<div className="backToTop">
-                    	<FontAwesomeIcon icon={faArrowAltCircleUp} size="4x" onClick={this.scrollToTop} />
-                	</div>
 					<Header toggleTheme={this.toggleTheme} />
 					<Switch>
 						<Route exact path="/">
@@ -240,6 +237,9 @@ class App extends Component {
 							<Redirect to="/" />
 						</Route>
 					</Switch>
+					<div className="backToTop">
+                    	<FontAwesomeIcon icon={faArrowAltCircleUp} size="4x" onClick={this.scrollToTop} />
+                	</div>
 					<Footer />
 				</Router>
 			</div>

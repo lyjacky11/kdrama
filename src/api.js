@@ -34,21 +34,21 @@ export const getNetworkInfo = async (apiUrl) => {
 
 export const getPoster = (image_path, image_size) => {
 	if (image_path !== null) {
-		return `${imageAPI}/${image_size}/${image_path}`;
+		return `${imageAPI}/${image_size}${image_path}`;
 	}
 	return noPoster;
 };
 
 export const getBackdrop = (image_path, image_size) => {
 	if (image_path !== null) {
-		return `${imageAPI}/${image_size}/${image_path}`;
+		return `${imageAPI}/${image_size}${image_path}`;
 	}
 	return noBackdrop;
 };
 
 export const getNetwork = (image_path, image_size) => {
 	if (image_path !== null) {
-		return `${imageAPI}/${image_size}/${image_path}`;
+		return `${imageAPI}/${image_size}${image_path}`;
 	}
 	return "";
 };
