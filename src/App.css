@@ -1,3 +1,8 @@
+body {
+	color: white;
+	background-color: #181818;
+}
+
 button {
 	border: none;
 	color: white;
@@ -13,12 +18,18 @@ label {
 .HeaderComponent {
 	padding: 20px;
 	position: relative;
-	background-color: white;
 	z-index: 11;
+	background-color: #181818;
 }
 
 .homeLink {
 	padding-top: 5px;
+}
+
+.FilterComponent {
+	padding: 10px;
+	border-radius: 25px;
+	background-color: #232323;
 }
 
 .titlesContainer,
@@ -43,7 +54,8 @@ label {
 	margin: 10px;
 	width: fit-content;
 	padding: 10px 20px;
-	background-color: rgb(244, 254, 255);
+	/* background-color: rgb(244, 254, 255); */
+	background-color: #232323;
 	border-radius: 8%;
 }
 
@@ -95,6 +107,7 @@ label {
 	position: sticky;
 	top: 25px;
 	padding: 15px;
+	margin: 15px;
 	width: fit-content;
 	display: inline-block;
 	color: white;
@@ -105,8 +118,8 @@ label {
 .FooterComponent {
 	position: relative;
 	padding: 10px;
-	background-color: white;
 	z-index: 11;
+	background-color: #181818;
 }
 
 @media screen and (max-width: 768px) {
