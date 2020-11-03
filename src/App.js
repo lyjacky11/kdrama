@@ -160,7 +160,7 @@ class App extends Component {
 
 	render () {
 		return (
-			<div className="text-center">
+			<div className="AppComponent text-center">
 				<Router>
 					<Header />
 					<Switch>
@@ -173,23 +173,17 @@ class App extends Component {
 								changeYear={this.changeYear}
 								handleSearch={this.handleSearch}
 							/>
-							{this.state.titles.length !== 0 ? (
-								<Titles
-									titles={this.state.titles}
-									queryTitles={this.state.query_titles}
-									searchQuery={this.state.search_query}
-									currentPage={this.state.page}
-									totalPages={this.state.total_pages}
-									totalResults={this.state.total_results}
-									queryTotalResults={this.state.query_total_results}
-									getImage={getImage}
-									nextPage={this.nextPage}
-								/>
-							) : (
-								<div className="m-5">
-									<h5>No titles found for this query!</h5>
-								</div>
-							)}
+							<Titles
+								titles={this.state.titles}
+								queryTitles={this.state.query_titles}
+								searchQuery={this.state.search_query}
+								currentPage={this.state.page}
+								totalPages={this.state.total_pages}
+								totalResults={this.state.total_results}
+								queryTotalResults={this.state.query_total_results}
+								getImage={getImage}
+								nextPage={this.nextPage}
+							/>
 						</Route>
 						<Route
 							exact

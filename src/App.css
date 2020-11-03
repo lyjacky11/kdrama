@@ -6,7 +6,7 @@ button {
 	padding: 10px;
 }
 
-.header {
+.HeaderComponent {
 	position: relative;
 	background-color: white;
 	z-index: 11;
@@ -55,7 +55,7 @@ button {
 	z-index: 11;
 }
 
-.titleInfoComponent {
+.TitleInfoComponent {
 	min-height: calc(100vh - 115px - 110px);
 }
 
@@ -93,7 +93,7 @@ button {
 	border-radius: 20px;
 }
 
-.footer {
+.FooterComponent {
 	position: relative;
 	padding: 10px;
 	background-color: white;

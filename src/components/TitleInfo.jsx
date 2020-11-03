@@ -33,7 +33,7 @@ class TitleInfo extends Component {
 
         return (
             (titleInfo !== null && !titleInfo.response) ?
-                <div className="titleInfoComponent">
+                <div className="TitleInfoComponent">
                     <div className="backdrop" style={{ backgroundImage: `url(${getImage(titleInfo.backdrop_path, "w780")}` }}></div>
                     <div className="titleData" >
                         <div className="titlePoster mb-4">

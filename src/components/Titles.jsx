@@ -12,7 +12,7 @@ class Titles extends Component {
         const titlesToDisplay = searchQuery !== "" ? queryTitles : titles;
 
         return (
-            <div>
+            <div className="TitlesComponent">
                 {
                     (titlesToDisplay.length !== 0) ? console.log(titlesToDisplay) : null
                 }
@@ -25,10 +25,11 @@ class Titles extends Component {
                 {
                     (titlesToDisplay.length !== 0) ?
                         <Scroller
+                            className="scroller"
                             loadMore={nextPage}
                             hasMore={currentPage < totalPages}
                             loader={
-                                <div key={0}>
+                                <div key={0} className="loader" >
                                     <h6>Loading more titles...</h6>
                                     <br />
                                     <Spinner animation="border" />
@@ -38,7 +39,7 @@ class Titles extends Component {
                             <div className="titlesContainer">
                                 {
                                     titlesToDisplay.map((title, index) => (
-                                        <Link key={index} className="titleLink" to={`/title/${title.id}`}>
+                                        <Link key={index} className="titleLink" to={`/title/${title.id}`} >
                                             <div key={index} className="titleInfo">
                                                 <div>
                                                     <b>{title.name} <br /> {title.original_name !== title.name ? title.original_name : ""}</b>

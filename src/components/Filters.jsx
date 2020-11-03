@@ -5,7 +5,7 @@ class Filters extends Component {
         const { getState, resetState, changeSortBy, changeLang, changeYear, handleSearch } = this.props;
 
         return (
-            <div>
+            <div className="FilterComponent">
                 <div className="filters mt-4">
                     <div className="sortFilter mb-2">
                         <label className="mr-4" htmlFor="sort_by">Sort By:</label>
