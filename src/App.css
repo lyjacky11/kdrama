@@ -140,8 +140,8 @@ label {
 		width: 130px;
 	}
 
-	.search input[type=number] {
-		width: 165px;
+	.search .searchById {
+		display: none;
 	}
 
 	.titleData {
