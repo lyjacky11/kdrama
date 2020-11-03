@@ -167,6 +167,11 @@ label {
 	cursor: pointer;
 	background-color: var(--bg-color);
 	border-radius: 50%;
+	transition: transform 250ms ease-in-out;
+}
+
+.backToTop:hover {
+	transform: scale(1.1);
 }
 
 .FooterComponent {
