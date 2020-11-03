@@ -1,3 +1,6 @@
+/*
+	GLOBAL CLASSES
+*/
 body {
 	color: var(--text-color);
 	background-color: var(--bg-color);
@@ -15,6 +18,9 @@ label {
 	font-weight: 600;
 }
 
+/*
+	HEADER COMPONENT
+*/
 .HeaderComponent {
 	padding-top: 20px;
 	position: relative;
@@ -35,6 +41,9 @@ label {
 	cursor: pointer;
 }
 
+/*
+	FILTER COMPONENT
+*/
 .FilterComponent {
 	padding: 10px;
 	border-radius: 0 0 25px 25px;
@@ -58,6 +67,9 @@ label {
 	width: 200px;
 }
 
+/*
+	TITLES COMPONENT
+*/
 .titleInfo {
 	margin: 10px;
 	width: fit-content;
@@ -68,46 +80,6 @@ label {
 
 .titleInfo img {
 	width: 200px;
-}
-
-.backdrop {
-	position: fixed;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-	filter: brightness(25%);
-	z-index: 10;
-}
-
-.TitleInfoComponent {
-	min-height: calc(100vh - 360px);
-}
-
-.titleData {
-	position: relative;
-	margin: 100px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	color: white;
-	z-index: 11;
-}
-
-.titleContent {
-	margin-left: 40px;
-	text-align: left;
-	width: 50%;
-}
-
-.titlePoster {
-	width: 250px;
-}
-
-.titlePoster img {
-	width: 100%;
 }
 
 .resultsNum {
@@ -122,6 +94,52 @@ label {
 	border-radius: 20px;
 }
 
+/*
+	TITLE INFO COMPONENT
+*/
+.TitleInfoComponent {
+	min-height: calc(100vh - 360px);
+}
+
+.titleData {
+	position: relative;
+	margin: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	color: white;
+	z-index: 11;
+}
+
+.titlePoster {
+	width: 250px;
+}
+
+.titlePoster img {
+	width: 100%;
+}
+
+.titleContent {
+	margin-left: 40px;
+	text-align: left;
+	width: 50%;
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	filter: brightness(25%);
+	z-index: 10;
+}
+
+/*
+	FOOTER COMPONENT
+*/
 .FooterComponent {
 	position: relative;
 	padding: 15px;
@@ -129,6 +147,9 @@ label {
 	background-color: var(--bg-color);
 }
 
+/*
+	RESPONSIVE CLASSES
+*/
 @media screen and (max-width: 768px) {
 	.titleInfo {
 		width: 150px;
