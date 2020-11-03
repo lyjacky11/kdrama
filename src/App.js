@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop, getNetwork } from "./api.js";
 import ScrollMemory from "react-router-scroll-memory";
 
@@ -75,6 +77,10 @@ class App extends Component {
 	resetState = () => {
 		this.setState(this.initialState);
 	};
+
+	scrollToTop() {
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    }
 
 	changeSortBy = async (event) => {
 		const newSortBy = event.target.value;
@@ -191,6 +197,9 @@ class App extends Component {
 			<div className="AppComponent">
 				<Router>
 					<ScrollMemory />
+					<div className="backToTop">
+                    	<FontAwesomeIcon icon={faArrowAltCircleUp} size="4x" onClick={this.scrollToTop} />
+                	</div>
 					<Header toggleTheme={this.toggleTheme} />
 					<Switch>
 						<Route exact path="/">

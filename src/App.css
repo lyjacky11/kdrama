@@ -76,11 +76,13 @@ label {
 */
 .titleInfo {
 	margin: 10px;
+	position: relative;
 	width: fit-content;
 	padding: 10px 20px;
 	background-color: var(--bg-alt-color);
 	border-radius: 8%;
 	transition: transform 250ms ease-in-out;
+	z-index: 10;
 }
 
 .titleInfo:hover {
@@ -102,6 +104,17 @@ label {
 	color: white;
 	background-color: var(--blue);
 	border-radius: 20px;
+	z-index: 11;
+}
+
+.backToTop {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	z-index: 12;
+	cursor: pointer;
+	background-color: var(--bg-color);
+	border-radius: 50%;
 }
 
 /*
