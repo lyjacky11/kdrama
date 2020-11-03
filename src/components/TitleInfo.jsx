@@ -58,7 +58,10 @@ class TitleInfo extends Component {
                                 </h5>
                             </div>
                             <div className="mt-4">
-                                <h6>Air Date: {titleInfo.first_air_date}</h6>
+                                <h5>Air Date: {titleInfo.first_air_date}</h5>
+                            </div>
+                            <div>
+                                <h5>Episodes: {titleInfo.number_of_episodes}</h5>
                             </div>
                             <div>
                                 <h6>Genres:&nbsp;
@@ -69,9 +72,6 @@ class TitleInfo extends Component {
                                     }
                                 </h6>
                             </div>
-                            <div>
-                                <h6>Episodes: {titleInfo.number_of_episodes}</h6>
-                            </div>
                             <div className="mt-4">
                                 <h6>Overview:</h6><p>{titleInfo.overview}</p>
                             </div>
@@ -79,7 +79,7 @@ class TitleInfo extends Component {
                     </div>
                 </div>
                 : <div>
-                    <div className="titleData p-4 m-3">
+                    <div className="p-4 m-3">
                         <h5>Invalid Title ID!</h5>
                     </div>
                 </div>

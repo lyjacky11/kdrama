@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Filters extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            titleById: ""
+        }
+    }
+
+    setTitleById = (event) => {
+        const titleId = event.target.value;
+        if (event.key === 'Enter') {
+            this.setState({ titleById: titleId });
+        }
+    }
+
     render() {
         const { getState, resetState, changeSortBy, changeLang, changeYear, handleSearch } = this.props;
 
@@ -61,9 +77,11 @@ class Filters extends Component {
                 <div className="search m-4">
                     <label className="mr-4" htmlFor="search_box">Search:</label>
                     <input type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search for a drama title..." />
-                    {/* <label className="ml-5 mr-4" htmlFor="title_by_id">TMDB ID:</label>
-                    <input type="number" id="title_by_id" name="title_by_id" placeholder="Search by TMDB ID..." />
-                    <button onClick={getTitleById}>Go</button> */}
+                    <label className="ml-5 mr-4" htmlFor="title_by_id">TMDB TV ID:</label>
+                    <input type="number" id="title_by_id" name="title_by_id" onKeyDown={this.setTitleById} placeholder="Enter TMDB TV ID..." step="1" min="1" max="99999" />
+                    {
+                        (this.state.titleById !== "") ? <Redirect to={`/title/${this.state.titleById}`} /> : null
+                    }
                 </div>
             </div>
         );

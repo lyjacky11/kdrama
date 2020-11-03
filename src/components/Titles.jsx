@@ -10,7 +10,7 @@ class Titles extends Component {
     render() {
         const { titles, queryTitles, searchQuery, currentPage, totalPages, totalResults, queryTotalResults, getImage, nextPage } = this.props;
         const titlesToDisplay = searchQuery !== "" ? queryTitles : titles;
-
+        
         return (
             <div className="TitlesComponent">
                 {
