@@ -41,6 +41,10 @@ label {
 	cursor: pointer;
 }
 
+.themeText {
+	cursor: pointer;
+}
+
 /*
 	FILTER COMPONENT
 */
