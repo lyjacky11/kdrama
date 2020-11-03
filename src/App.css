@@ -80,10 +80,16 @@ label {
 	padding: 10px 20px;
 	background-color: var(--bg-alt-color);
 	border-radius: 8%;
+	transition: transform 250ms ease-in-out;
+}
+
+.titleInfo:hover {
+	transform: scale(1.02);
 }
 
 .titleInfo img {
 	width: 200px;
+	border-radius: 20px;
 }
 
 .resultsNum {
@@ -121,6 +127,12 @@ label {
 
 .titlePoster img {
 	width: 100%;
+	border-radius: 20px;
+	transition: transform 250ms ease-in-out;
+}
+
+.titlePoster img:hover {
+	transform: scale(1.04);
 }
 
 .titleContent {
