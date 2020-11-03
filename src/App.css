@@ -35,8 +35,17 @@ label {
 	background-color: var(--bg-color);
 }
 
-.homeLink {
-	padding-top: 5px;
+.headerElements {
+	padding-top: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.themeBtn {
+	margin-left: 50px;
+	cursor: pointer;
 }
 
 .FilterComponent {
@@ -50,7 +59,6 @@ label {
 .search {
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
 }
