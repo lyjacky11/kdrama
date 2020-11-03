@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,9 +89,9 @@ class TitleInfo extends Component {
                         {
                             this.state.otherTitles.slice(0,numOtherTitles).map((otherTitle, index) => (
                                 <div key={index} className="otherTitlePoster mb-4">
-                                    <a href={`/title/${otherTitle.id}`}>
+                                    <Link to={`/title/${otherTitle.id}`}>
                                         <img alt={otherTitle.name} src={getPoster(otherTitle.poster_path, "w500")} />
-                                    </a>
+                                    </Link>
                                     <p className="mt-3"><b>{otherTitle.name} <br /> {(otherTitle.original_name !== otherTitle.name) ? otherTitle.original_name : ""}</b></p>
                                 </div>
                             ))

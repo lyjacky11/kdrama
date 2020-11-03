@@ -20,7 +20,7 @@ label {
 .HeaderComponent {
 	padding-top: 20px;
 	position: relative;
-	z-index: 11;
+	z-index: 12;
 	background-color: var(--bg-color);
 }
 
@@ -175,7 +175,7 @@ label {
 	position: fixed;
 	bottom: 25px;
 	right: 25px;
-	z-index: 12;
+	z-index: 15;
 	cursor: pointer;
 	background-color: var(--bg-color);
 	border-radius: 50%;
@@ -189,7 +189,7 @@ label {
 .FooterComponent {
 	position: relative;
 	padding: 15px;
-	z-index: 11;
+	z-index: 12;
 	background-color: var(--bg-color);
 }
 

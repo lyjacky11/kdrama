@@ -224,6 +224,7 @@ class App extends Component {
 							path="/title/:id"
 							render={(props) => (
 								<TitleInfo
+									key={props.match.params.id}
 									titleId={props.match.params.id}
 									fetchTitleInfo={this.fetchTitleInfo}
 									fetchOtherTitles={this.fetchOtherTitles}
