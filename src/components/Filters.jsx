@@ -63,7 +63,9 @@ class Filters extends Component {
                             <option value="ja">Japanese (日本語)</option>
                             <option value="zh">Mandarin (普通话)</option>
                             <option value="cn">Cantonese (廣州話)</option>
-                            <option value="ko,ja,zh,cn">All Languages</option>
+                            <option value="vi">Vietnamese (Tiếng Việt)</option>
+                            <option value="th">Thai (ภาษาไทย)</option>
+                            <option value="ko,ja,zh,cn,vi,th">All Languages</option>
                         </select>
                     </div>
                 </div>
