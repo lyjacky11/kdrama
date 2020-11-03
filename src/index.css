@@ -4,13 +4,22 @@ body {
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-transition: 250ms ease-in-out;
-	-moz-transition: 250ms ease-in-out;
-	transition: 250ms ease-in-out;
+	-webkit-transition: 300ms ease-in-out;
+	-moz-transition: 300ms ease-in-out;
+	transition: 300ms ease-in-out;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+:root {
+	--bg-color: #181818;
+	--bg-alt-color: #232323;
+	--text-color: white;
+	--blue: dodgerblue;
+}
+
+.light {
+	--bg-color: #fafafa;
+	--bg-alt-color: rgb(244, 254, 255);
+	--text-color: black;
 }
 
 a {

@@ -1,16 +1,3 @@
-:root {
-	--bg-color: #181818;
-	--bg-alt-color: #232323;
-	--text-color: white;
-	--blue: dodgerblue;
-}
-
-.light {
-	--bg-color: #FAFAFA;
-	--bg-alt-color: rgb(244, 254, 255);
-	--text-color: black;
-}
-
 body {
 	color: var(--text-color);
 	background-color: var(--bg-color);
@@ -29,14 +16,14 @@ label {
 }
 
 .HeaderComponent {
-	padding: 20px;
+	padding-top: 20px;
 	position: relative;
 	z-index: 11;
 	background-color: var(--bg-color);
 }
 
 .headerElements {
-	padding-top: 15px;
+	padding: 15px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -96,7 +83,7 @@ label {
 }
 
 .TitleInfoComponent {
-	min-height: calc(100vh - 115px - 110px);
+	min-height: calc(100vh - 360px);
 }
 
 .titleData {
@@ -137,13 +124,12 @@ label {
 
 .FooterComponent {
 	position: relative;
-	padding: 10px;
+	padding: 15px;
 	z-index: 11;
 	background-color: var(--bg-color);
 }
 
 @media screen and (max-width: 768px) {
-
 	.titleInfo {
 		width: 150px;
 		padding: 10px;
