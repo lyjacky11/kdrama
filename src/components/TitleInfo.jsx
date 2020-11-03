@@ -17,12 +17,7 @@ class TitleInfo extends Component {
     async componentDidMount() {
         const { titleId, fetchTitleInfo } = this.props;
         const titleInfo = await fetchTitleInfo(titleId);
-        // const networkInfo = [];
-        // titleInfo.networks.map(async (network) => (
-        //     networkInfo.push(await fetchNetworkInfo(network.id))
-        // ));
-        // this.setState({ networkInfo: networkInfo });
-        // console.log(networkInfo);
+        document.title = `${titleInfo.name} ${(titleInfo.original_name !== titleInfo.name) ? "(" + titleInfo.original_name + ")" : ""} | Discover Asian Dramas`;
         this.setState({ titleInfo: titleInfo });
         console.log(titleInfo);
     }
@@ -43,7 +38,7 @@ class TitleInfo extends Component {
                         </div>
                         <div className="titleContent">
                             <div>
-                                <h4>{titleInfo.name} <br /> {titleInfo.original_name !== titleInfo.name ? titleInfo.original_name : ""}</h4>
+                                <h4>{titleInfo.name} <br /> {(titleInfo.original_name !== titleInfo.name) ? titleInfo.original_name : ""}</h4>
                             </div>
                             <div className="mt-4">
                                 <h5>Rating: {titleInfo.vote_average}/10 <FontAwesomeIcon icon={faStar} color="orange" ></FontAwesomeIcon></h5>

@@ -7,16 +7,20 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 class Titles extends Component {
 
+    componentDidMount() {
+        document.title = "Discover Asian Dramas";
+    }
+
     render() {
         const { titles, queryTitles, searchQuery, currentPage, totalPages, totalResults, queryTotalResults, getImage, nextPage } = this.props;
         const titlesToDisplay = searchQuery !== "" ? queryTitles : titles;
-        
+
         return (
             <div className="TitlesComponent">
                 {
                     (titlesToDisplay.length !== 0) ? console.log(titlesToDisplay) : null
                 }
-                <div className="resultsNum p-3">
+                <div className="resultsNum m-3 p-3">
                     {
                         (searchQuery === "") ? <b>Displaying: {queryTotalResults} of {totalResults} results</b>
                             : <b>Displaying: {queryTotalResults} results</b>

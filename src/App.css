@@ -13,7 +13,8 @@ button {
 }
 
 .titlesContainer,
-.filters {
+.filters,
+.search {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -21,8 +22,12 @@ button {
 	align-items: center;
 }
 
-.search input {
+.search input[type=text] {
 	width: 300px;
+}
+
+.search input[type=number] {
+	width: 200px;
 }
 
 .titleInfo {
@@ -101,13 +106,6 @@ button {
 }
 
 @media screen and (max-width: 768px) {
-	.filters {
-		flex-direction: column;
-	}
-
-	.search input {
-		width: 70%;
-	}
 
 	.titleInfo {
 		width: 150px;
@@ -117,6 +115,10 @@ button {
 
 	.titleInfo img {
 		width: 130px;
+	}
+
+	.search input[type=number] {
+		width: 165px;
 	}
 
 	.titleData {

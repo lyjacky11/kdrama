@@ -7,7 +7,7 @@ class Header extends Component {
     render() {
         return (
             <div className="HeaderComponent p-4">
-                <h2>Discover Asian Dramas</h2>
+                <h3>Discover Asian Dramas</h3>
                 <h4 className="backLink">
                     <Link to="/"><FontAwesomeIcon icon={faHome} />&nbsp; Home</Link>
                 </h4>
