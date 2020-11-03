@@ -17,11 +17,27 @@ class Filters extends Component {
         }
     }
 
+    toggleFilters = () => {
+        const filters = document.querySelector(".filters");
+        const search = document.querySelector(".search");
+        if (filters.style.display === "none") {
+            filters.style.display = "flex";
+        } else {
+            filters.style.display = "none";
+        }
+        if (search.style.display === "none") {
+            search.style.display = "flex";
+        } else {
+            search.style.display = "none";
+        }
+    }
+
     render() {
         const { getState, resetState, changeSortBy, changeLang, changeYear, handleSearch } = this.props;
 
         return (
             <div className="FilterComponent">
+                <button className="toggleFilters btn btn-primary btn-sm" type="button" onClick={this.toggleFilters}><h6>Toggle Filters</h6></button>
                 <div className="filters mt-3">
                     <div className="sortFilter form-group">
                         <label className="mr-4" htmlFor="sort_by">Sort By:</label>
@@ -52,16 +68,16 @@ class Filters extends Component {
                     </div>
                 </div>
                 <div className="search m-3">
-                    <div className="searchByTitle form-group">
-                        <label className="mr-4" htmlFor="search_box">Search by Title:</label>
-                        <input className="form-control" type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search for a drama or series..." />
-                    </div>
                     <div className="searchById form-group">
                         <label className="mr-4" htmlFor="title_by_id">Search by TMDB ID:</label>
                         <input className="form-control" type="number" id="title_by_id" name="title_by_id" onKeyDown={this.setTitleById} placeholder="Enter TMDB TV ID..." step="1" min="1" max="99999" />
                     </div>
+                    <div className="searchByTitle form-group">
+                        <label className="mr-4" htmlFor="search_box">Search by Title:</label>
+                        <input className="form-control" type="text" id="search_box" name="search_box" value={getState.search_query} onChange={(e) => handleSearch(e.target.value, false)} placeholder="Search for a drama or series..." />
+                    </div>
                     <div className="resetState">
-                        <button type="button" onClick={resetState}><h6>Reset Filters</h6></button>
+                        <button className="btn btn-primary btn-sm" type="button" onClick={resetState}><h6>Reset Filters</h6></button>
                     </div>
 
                     {

@@ -7,11 +7,7 @@ body {
 }
 
 button {
-	border: none;
-	color: white;
-	background-color: var(--blue);
-	border-radius: 20px;
-	padding: 10px;
+	border-radius: 10px !important;
 }
 
 label {
@@ -63,11 +59,15 @@ label {
 	align-items: center;
 }
 
-.search input[type=text] {
-	width: 300px;
+.toggleFilters {
+	display: none;
 }
 
-.search input[type=number] {
+.search .searchByTitle {
+	width: 400px;
+}
+
+.search .searchById {
 	width: 200px;
 }
 
@@ -167,6 +167,10 @@ label {
 
 	.search .searchById {
 		display: none;
+	}
+
+	.toggleFilters {
+		display: block;
 	}
 
 	.titleData {
