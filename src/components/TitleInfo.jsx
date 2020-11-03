@@ -23,7 +23,7 @@ class TitleInfo extends Component {
     }
 
     render() {
-        const { getPoster, getBackdrop } = this.props;
+        const { getPoster, getBackdrop, getNetwork } = this.props;
         const { titleInfo } = this.state;
 
         return (
@@ -47,7 +47,7 @@ class TitleInfo extends Component {
                             <div className="mt-4">
                                 <h5>{
                                     titleInfo.networks.map((network) => (
-                                        <img className="mr-4" key={network.id} alt={network.name} src={getPoster(network.logo_path, "w92")}></img>
+                                        <img className="mr-4" key={network.id} alt={network.name} src={getNetwork(network.logo_path, "w92")}></img>
                                     ))
                                 }
                                 </h5>
@@ -58,7 +58,7 @@ class TitleInfo extends Component {
                             <div>
                                 <h5>Episodes: {titleInfo.number_of_episodes}</h5>
                             </div>
-                            <div>
+                            <div className="mt-4">
                                 <h6>Genres:&nbsp;
                                     {
                                         titleInfo.genres.map((genre) => (
@@ -66,6 +66,9 @@ class TitleInfo extends Component {
                                         ))
                                     }
                                 </h6>
+                            </div>
+                            <div>
+                                <h6>Language: {titleInfo.original_language}</h6>
                             </div>
                             <div className="mt-4">
                                 <h6>Overview:</h6><p>{titleInfo.overview}</p>

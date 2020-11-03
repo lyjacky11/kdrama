@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
-import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop } from "./api.js";
+import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop, getNetwork } from "./api.js";
 import ScrollMemory from "react-router-scroll-memory";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -223,6 +223,7 @@ class App extends Component {
 									fetchTitleInfo={this.fetchTitleInfo}
 									getPoster={getPoster}
 									getBackdrop={getBackdrop}
+									getNetwork={getNetwork}
 								/>
 							)}
 						/>
