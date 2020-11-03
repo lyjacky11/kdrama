@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
 import { getTitles, getImage, getTitleInfo, getNetworkInfo } from "./api.js";
+import ScrollMemory from 'react-router-scroll-memory';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -162,6 +163,7 @@ class App extends Component {
 		return (
 			<div className="AppComponent text-center">
 				<Router>
+					<ScrollMemory />
 					<Header />
 					<Switch>
 						<Route exact path="/">
