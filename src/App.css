@@ -37,7 +37,7 @@ label {
 
 .FilterComponent {
 	padding: 10px;
-	border-radius: 25px;
+	border-radius: 0 0 25px 25px;
 	background-color: var(--bg-alt-color);
 }
 

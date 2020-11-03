@@ -4,18 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faAdjust } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
-
-    toggleTheme() {
-        document.querySelector("body").classList.toggle("light");
-    }
-
     render() {
+        const { toggleTheme } = this.props;
+        
         return (
             <div className="HeaderComponent">
                 <h3>Discover Asian Dramas</h3>
                 <div className="headerElements">
                     <Link className="homeLink" to="/"><h5><FontAwesomeIcon icon={faHome} />&nbsp; Home</h5></Link>
-                    <FontAwesomeIcon className="themeBtn" icon={faAdjust} size="2x" onClick={this.toggleTheme} />
+                    <FontAwesomeIcon className="themeBtn" icon={faAdjust} size="2x" onClick={toggleTheme} />
                 </div>
             </div>
 

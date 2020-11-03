@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Header, Filters, Titles, TitleInfo, Footer } from "./components";
 import { getTitles, getTitleInfo, getNetworkInfo, getPoster, getBackdrop } from "./api.js";
-import ScrollMemory from 'react-router-scroll-memory';
+import ScrollMemory from "react-router-scroll-memory";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -16,6 +16,7 @@ class App extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
+			theme               : "",
 			display_lang        : "en-US",
 			orig_lang           : "ko",
 			sort_by             : "popularity.desc",
@@ -43,6 +44,32 @@ class App extends Component {
 			query_total_results : apiResult.results.length
 		});
 		this.initialState = this.state;
+
+		const bodyTag = document.querySelector("body");
+		const cachedTheme = localStorage.getItem("theme");
+
+		if (cachedTheme !== null) {
+			bodyTag.classList.add("light");
+			this.setState({ theme: cachedTheme });
+		} else {
+			bodyTag.classList.remove("light");
+		}
+	}
+
+	toggleTheme = () => {
+		const { theme } = this.state;
+		const bodyTag = document.querySelector("body");
+		
+		if (theme === "") {
+			bodyTag.classList.add("light");
+			this.setState({theme: "light"});
+			localStorage.setItem("theme", "light");
+		}
+		else {
+			bodyTag.classList.remove("light");
+			this.setState({theme: ""});
+			localStorage.removeItem("theme");
+		}
 	}
 
 	resetState = () => {
@@ -164,7 +191,7 @@ class App extends Component {
 			<div className="AppComponent">
 				<Router>
 					<ScrollMemory />
-					<Header />
+					<Header toggleTheme={this.toggleTheme} />
 					<Switch>
 						<Route exact path="/">
 							<Filters
