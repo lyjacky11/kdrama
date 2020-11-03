@@ -1,3 +1,14 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-alt-color);
+}
+
 html {
 	scroll-behavior: smooth;
 }
