@@ -1,6 +1,6 @@
 import axios from "axios";
 import noPoster from "./No_image_poster.png";
-import noBackdrop from "./Night_wallpaper.png";
+import noBackdrop from "./No_image_backdrop.png";
 const imageAPI = `https://image.tmdb.org/t/p`;
 
 export const getTitles = async (apiUrl) => {
