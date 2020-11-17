@@ -142,7 +142,9 @@ class App extends Component {
 		const titles = this.state.titles;
 		if (query !== "") {
 			if (!nextPage) {
-				this.setState({ page: 1 });
+				this.setState({
+					page: 1
+				});
 			}
 			const queryTitles = titles.filter(
 				(title) =>
@@ -165,12 +167,20 @@ class App extends Component {
 
 	nextPage = () => {
 		setTimeout(async () => {
+			let set = new Set();
 			this.setState({ page: this.state.page + 1 });
 			const discoverAPI = `${discoverAPIurl}&language=${this.state.display_lang}&sort_by=${this.state
 				.sort_by}&with_genres=${this.state.genres}&with_original_language=${this.state
 				.orig_lang}&first_air_date_year=${this.state.air_date_year}&page=${this.state.page}`;
 			const apiResult = await getTitles(discoverAPI);
-			const updatedTitles = [].concat(this.state.titles, apiResult.results);
+			let updatedTitles = this.state.titles.concat(apiResult.results);
+			updatedTitles = updatedTitles.filter(title => {
+				if (!set.has(title.id)) {
+					set.add(title.id);
+					return true;
+				}
+				return false;
+			}, set);
 			this.setState({
 				titles              : updatedTitles,
 				total_pages         : apiResult.total_pages,

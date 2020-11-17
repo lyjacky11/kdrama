@@ -4,7 +4,6 @@ import noBackdrop from "./No_image_backdrop.png";
 const imageAPI = `https://image.tmdb.org/t/p`;
 
 export const getTitles = async (apiUrl) => {
-	// console.log(apiUrl);
 	try {
 		const { data: { total_pages, total_results, results } } = await axios.get(apiUrl);
 		return { total_pages, total_results, results };
@@ -14,7 +13,6 @@ export const getTitles = async (apiUrl) => {
 };
 
 export const getTitleInfo = async (apiUrl) => {
-	// console.log(apiUrl);
 	try {
 		const { data } = await axios.get(apiUrl);
 		return data;
@@ -24,7 +22,6 @@ export const getTitleInfo = async (apiUrl) => {
 };
 
 export const getOtherTitles = async (apiUrl) => {
-	// console.log(apiUrl);
 	try {
 		const { data: { results } } = await axios.get(apiUrl);
 		return results;
