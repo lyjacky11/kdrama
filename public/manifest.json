@@ -2,20 +2,35 @@
   "short_name": "Asian Dramas",
   "name": "Asian Dramas",
   "description": "Discover and search for popular Asian dramas!",
+  "url": "https://dramas.jackyly.ca/",
+  "lang": "English",
   "icons": [
     {
-		"src": "/android-chrome-192x192.png",
-		"sizes": "192x192",
-		"type": "image/png"
-	},
-	{
-		"src": "/android-chrome-512x512.png",
-		"sizes": "512x512",
-		"type": "image/png"
-	}
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+	  },
+	  {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+	  }
   ],
   "start_url": ".",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#181818",
-  "background_color": "#181818"
+  "background_color": "#181818",
+  "screenshots": [
+    {
+      "src": "screenshots/screenshot-1280x800.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshots/screenshot-750x1334.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    }
+  ]
 }
