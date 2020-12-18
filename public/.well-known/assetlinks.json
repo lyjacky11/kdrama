@@ -1,5 +1,19 @@
 [{
       "relation": ["delegate_permission/common.handle_all_urls"],
-      "target" : { "namespace": "android_app", "package_name": "ca.jackyly.dramas",
-                   "sha256_cert_fingerprints": ["C9:DE:66:E3:84:F0:1A:1E:E7:18:39:C2:96:4F:6D:73:B5:12:27:52:27:00:F0:DF:04:50:9A:F0:27:36:BA:31"] }
-    }]
+      "target" : {
+            "namespace": "android_app",
+            "package_name": "ca.jackyly.dramas",
+            "sha256_cert_fingerprints": [
+                  "C9:DE:66:E3:84:F0:1A:1E:E7:18:39:C2:96:4F:6D:73:B5:12:27:52:27:00:F0:DF:04:50:9A:F0:27:36:BA:31"
+            ]
+      }
+},{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : {
+            "namespace": "android_app",
+            "package_name": "ca.jackyly.dramas",
+            "sha256_cert_fingerprints": [
+                  "DC:0B:32:F0:D5:B4:00:ED:0A:3B:0F:BD:AF:4B:9E:63:7D:C8:67:F7:EC:9F:C7:FD:94:25:C7:09:C1:B1:67:FC"
+            ]
+      }
+}]
